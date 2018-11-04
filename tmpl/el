@@ -1,0 +1,8 @@
+;;; package --- %package%
+;;; Code:
+;;; Commentary:
+
+(defun to-do ()
+  (message "TODO"))
+
+;;; %filename% ends here

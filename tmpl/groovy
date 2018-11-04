@@ -1,0 +1,10 @@
+%package%
+
+/**
+ * File %filename%
+ *
+ * @author %author%
+ */
+class %classname% {
+
+}
