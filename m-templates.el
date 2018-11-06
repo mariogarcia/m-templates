@@ -8,14 +8,33 @@
 
 ;; When a file is not found is triggered a new file is created with
 ;; information derived from name, extension, and path.
+;;
+;; You can customize the directory where to find the templates by
+;; setting the 'm-templates-dir' variable
+;;
+;; (use-package m-templates
+;;   :ensure t
+;;   :init
+;;   (setq m-templates-dir "/home/mario/Repositories/elisp-playground/packages/m-templates/tmpl/")
+;;   (add-hook 'template-file-not-found-hook find-file-not-found-functions))
+;;
 
 ;;; Code:
 
 (require 'seq)
 
 (defvar m-templates-version "0.0.1")
-(defvar m-templates-dir
-  (concat "~/.emacs.d/elpa/m-templates-" m-templates-version "/tmpl"))
+
+(defgroup m-templates nil
+  "Support to set the TEMPLATES dir"
+  :group 'languages
+  :prefix "m-templates-")
+
+(defcustom m-templates-dir
+  (concat "~/.emacs.d/elpa/m-templates-" m-templates-version "/tmpl/")
+  "Default template dir."
+  :type 'string
+  :group 'm-templates)
 
 (defvar template-replacements-alist
   '(("%filename%" . (lambda () (file-name-nondirectory (buffer-file-name))))

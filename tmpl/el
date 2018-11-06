@@ -1,8 +1,11 @@
-;;; package --- %package%
+;;; package --- Examplanation about %classname%
 ;;; Code:
 ;;; Commentary:
 
 (defun to-do ()
+  "Print todo message."
   (message "TODO"))
+
+(provide '%classname%)
 
 ;;; %filename% ends here
