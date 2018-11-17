@@ -20,7 +20,6 @@
 ;;
 
 ;;; Code:
-
 (require 'seq)
 
 (defvar m-templates-version "0.0.1")
@@ -77,15 +76,6 @@
   "Join LIST with SEP."
   (mapconcat 'identity list sep))
 
-(defun find-template-file ()
-  "Search the current directory and its parents for a file matching the name configured for template files."
-  (let* ((file-name (buffer-file-name))
-         (ext (file-name-extension file-name))
-         (tmpl (concat m-templates-dir ext)))
-    (if (file-readable-p tmpl)
-        tmpl
-      "")))
-
 (defun template-file-not-found-hook ()
   "Call this when a 'find-file' command has not been able to find the specified file."
   (condition-case nil
@@ -111,6 +101,27 @@
 (or (memq 'template-file-not-found-hook find-file-not-found-functions)
     (setq find-file-not-found-functions
           (append find-file-not-found-functions '(template-file-not-found-hook))))
+
+(defun find-template-file ()
+  "Check whether any of TMPL-FILES match the end of the full FILE-NAME."
+  (let
+      ((file-name (buffer-file-name))
+       (tmpl-files (sort-list-by-length-desc
+                    (directory-files m-templates-dir)))
+       (tmpl))
+    (while tmpl-files
+      (if (string-suffix-p (car tmpl-files) file-name)
+          (progn
+            (setq tmpl (concat m-templates-dir (car tmpl-files)))
+            (setq tmpl-files (list)))
+        (setq tmpl-files (cdr tmpl-files))))
+    tmpl))
+
+(defun sort-list-by-length-desc (p-list)
+  "Sort P-LIST by descending length order."
+  (sort p-list
+        (lambda (a b)
+          (> (length a) (length b)))))
 
 ;; TESTS
 
