@@ -3,24 +3,15 @@
 ;; Author: Mario Garcia
 ;; Keywords: lisp
 ;; Version: 0.0.1
+;; URL: https://github.com/mariogarcia/m-templates
 
 ;;; Commentary:
 
 ;; When a file is not found is triggered a new file is created with
 ;; information derived from name, extension, and path.
 ;;
-;; You can customize the directory where to find the templates by
-;; setting the 'm-templates-dir' variable
-;;
-;; (use-package m-templates
-;;   :ensure t
-;;   :init
-;;   (setq m-templates-dir "/home/mario/Repositories/elisp-playground/packages/m-templates/tmpl/")
-;;   (add-hook 'template-file-not-found-hook find-file-not-found-functions))
-;;
 
 ;;; Code:
-(require 'seq)
 
 (defvar m-templates-version "0.0.1")
 
@@ -122,18 +113,6 @@
   (sort p-list
         (lambda (a b)
           (> (length a) (length b)))))
-
-;; TESTS
-
-;; (ert-deftest test-template-insert-package ()
-;;   (should (equal (template-insert-package "/home/x/A.java") ""))
-;;   (should (equal (template-insert-package "/home/x/A.groovy") ""))
-;;   (should (equal (template-insert-package "/home/x/src/main/java/io/xxx/A.java") "package io.xxx"))
-;;   (should (equal (template-insert-package "/home/x/src/main/groovy/io/xxx/A.groovy") "package io.xxx")))
-;;
-;; (ert-deftest test-resolve-jvm-package ()
-;;   (should (equal (resolve-jvm-package "java" "/a/b/c/src/main/java/io/xxx/core") "package io.xxx.core"))
-;;   (should (equal (resolve-jvm-package "java" "/a/b/c/src/main/java/io/xxx/core/") "package io.xxx.core")))
 
 (provide 'm-templates)
 
