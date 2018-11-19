@@ -10,13 +10,13 @@ the correspondant template.
 First clone the repository:
 
 ```
-git clone https://github.com/mariogarcia/elisp-playground.git /path/of/elisp-playground
+git clone https://github.com/mariogarcia/m-templates.git /path/of/elisp-playground
 ```
 
 Then as it's a simple package, you can install it with:
 
 ```elisp
-package-install-file /path/of/elisp-playground/packages/m-templates/m-templates.el
+package-install-file /path/of/m-templates/m-templates.el
 ```
 
 Then you can load it manually with `load-library` or loading it
@@ -33,7 +33,7 @@ configuring the installed package using
 (use-package m-templates
   :ensure t
   :init
-  (setq m-templates-dir "/home/mario/Repositories/elisp-playground/packages/m-templates/tmpl/")
+  (setq m-templates-dir "/home/mario/Repositories/m-templates/tmpl/")
   (add-hook 'template-file-not-found-hook find-file-not-found-functions))
 ```
 
