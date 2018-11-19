@@ -7,10 +7,16 @@ the correspondant template.
 
 ### Installation
 
-As it's a simple package, you can install the package with:
+First clone the repository:
+
+```
+git clone https://github.com/mariogarcia/elisp-playground.git /path/of/elisp-playground
+```
+
+Then as it's a simple package, you can install it with:
 
 ```elisp
-package-install-file /path/of/the/m-templates.el
+package-install-file /path/of/elisp-playground/packages/m-templates/m-templates.el
 ```
 
 Then you can load it manually with `load-library` or loading it
