@@ -89,10 +89,6 @@
     ('quit (kill-buffer (current-buffer))
            (signal 'quit "Quit"))))
 
-(or (memq 'template-file-not-found-hook find-file-not-found-functions)
-    (setq find-file-not-found-functions
-          (append find-file-not-found-functions '(template-file-not-found-hook))))
-
 (defun find-template-file ()
   "Check whether any of TMPL-FILES match the end of the full FILE-NAME."
   (let
@@ -113,6 +109,10 @@
   (sort p-list
         (lambda (a b)
           (> (length a) (length b)))))
+
+(or (memq 'template-file-not-found-hook find-file-not-found-functions)
+    (setq find-file-not-found-functions
+          (append find-file-not-found-functions '(template-file-not-found-hook))))
 
 (provide 'm-templates)
 
